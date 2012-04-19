@@ -1,3 +1,5 @@
+# Base module for interacting with the mongo store used for persistence
+
 require 'mongo'
 require 'uri'
 

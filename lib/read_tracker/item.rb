@@ -1,3 +1,5 @@
+# Portable representation of an item being tracked
+
 module ReadTracker
   class Item
     

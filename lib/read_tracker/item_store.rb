@@ -1,3 +1,5 @@
+# Data mapper for persisting items being tracked
+
 module ReadTracker
   class ItemStore
     include MongoStore
