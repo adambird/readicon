@@ -14,7 +14,7 @@ describe ItemStore do
     
     subject { @store.create_item(@item_id, @created_at) }
     
-    it "adds the item to the store" do
+    it "adds the item to the item store" do
       subject
       @store.get_item(@item_id).updated_at.to_i.should eq(@created_at.to_i)
     end

@@ -1,7 +1,10 @@
 module ReadTracker
   require "read_tracker/mongo_store"
   require "read_tracker/item"
+  require "read_tracker/item_state"
   require "read_tracker/item_store"
+  require "read_tracker/read_state_store"
+  require "read_tracker/coordinator"
   
   class << self
     def setup
@@ -17,13 +20,13 @@ module ReadTracker
     end
     
     def item_created(user, id, at)
-      ItemStore.new.create_item(user, id, at)
+      coordinator.item_created(user, id, at)
     end
     
     def item_updated(user, id, at)
-      ItemStore.new.set_updated_at(user, id, at)
+      coordinator.item_updated(user, id, at)
     end
-    
+
     def user_read_item(user, id, at)
       
     end
@@ -31,5 +34,11 @@ module ReadTracker
     def read_states(user, ids)
       
     end
+    
+    private 
+      def coordinator
+        @_coordinator ||= Coordinator.new
+      end
+    
   end
 end

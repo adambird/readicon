@@ -4,7 +4,7 @@ module ReadTracker
   class ItemStore
     include MongoStore
     
-    set_collection_name :items
+    set_collection_name :read_tracker_items
     set_indexes [
       [['id']], :unique => true
     ]
