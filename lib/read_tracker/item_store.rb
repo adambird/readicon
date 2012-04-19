@@ -22,5 +22,9 @@ module ReadTracker
         Item.new(item)
       end
     end
+    
+    def get_items(ids)
+      collection.find('id' => { '$in' => ids}).collect { |item| Item.new(item)}
+    end
   end
 end

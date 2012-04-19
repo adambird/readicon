@@ -8,5 +8,13 @@ module ReadTracker
     def initialize(attrs={})
       attrs.each_pair do |k,v| send("#{k}=", v) if respond_to?("#{k}=") end
     end
+    
+    def updated?
+      read_at && updated_at && updated_at > read_at
+    end
+    
+    def new?
+      read_at.nil? && updated_at
+    end
   end
 end

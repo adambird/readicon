@@ -53,14 +53,57 @@ describe Coordinator do
     end
   end
   
-  describe ".user_read_item" do
+  describe ".item_read" do
+    before(:each) do
+      @read_at = random_time
+    end
     
-    it "does something"
+    subject { @coordinator.item_read(@user, @item_id, @read_at) }
+    
+    it "marks the item as read in the read state store" do
+      @read_state_store.should_receive(:record_item_read).with(@user, @item_id, @read_at)
+      subject
+    end
   end
   
-  describe ".read_states" do
+  describe ".get_states" do
     before(:each) do
-      
+      @ids = [random_string, random_string, random_string]
+      @read_state_store.stub(:get_states) { @read_states || [] }
+      @item_store.stub(:get_items) { @items || [] } 
     end
+    
+    subject { @coordinator.get_states(@user, @ids) }
+    
+    it "gets the read states" do
+      @read_state_store.should_receive(:get_states).with(@user, @ids)
+      subject
+    end
+    
+    context "when all have been read previously" do
+      before(:each) do
+        @read_states = @ids.collect { |id| ItemState.new(:id => id) }  
+      end
+      
+      it "does not get unread items" do
+        @item_store.should_not_receive(:get_items)
+        subject
+      end
+    end
+    
+    context "when first one hasn't been read previously" do
+      before(:each) do
+        @read_states = [
+            ItemState.new(:id => @ids[1]),
+            ItemState.new(:id => @ids[2])
+          ]
+      end
+      
+      it "attempts to retrieve the item" do
+        @item_store.should_receive(:get_items).with([@ids[0]])
+        subject
+      end
+    end
+
   end
 end
