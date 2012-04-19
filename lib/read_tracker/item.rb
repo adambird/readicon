@@ -3,10 +3,10 @@
 module ReadTracker
   class Item
     
-    attr_accessor :_id, :id, :created_at
+    attr_accessor :id, :updated_at
     
     def initialize(attrs={})
-      attrs.each_pair do |k,v| send("#{k}=", v) end
+      attrs.each_pair do |k,v| send("#{k}=", v) if respond_to?("#{k}=") end
     end
   end
 end

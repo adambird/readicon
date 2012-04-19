@@ -4,21 +4,17 @@ module ReadTracker
   class ItemStore
     include MongoStore
     
-    def collection 
-      @_collection ||= open_connection['items']   
-    end
-    
-    def ensure_indexes
-      collection.ensure_index([['id', Mongo::ASCENDING]], :unique => true)
-    end
-    
-    def drop_collection
-      collection.drop
-      @_collection = nil
-    end
+    set_collection_name :items
+    set_indexes [
+      [['id']], :unique => true
+    ]
     
     def create_item(id, at)
-      collection.insert( { 'id' => id, 'created_at' => at.utc } )
+      collection.insert( { 'id' => id, 'updated_at' => at.utc } )
+    end
+    
+    def set_updated_at( id, at)
+      collection.update( { 'id' => id}, { '$set' => {'updated_at' => at.utc } }, { :upsert => true } )
     end
     
     def get_item(id)

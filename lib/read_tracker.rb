@@ -16,15 +16,19 @@ module ReadTracker
       @_connection_profile = value
     end
     
-    def item_created(id, at)
-      ItemStore.new.create_item(id, at)
+    def item_created(user, id, at)
+      ItemStore.new.create_item(user, id, at)
     end
     
-    def item_updated(id, at)
-      
+    def item_updated(user, id, at)
+      ItemStore.new.set_updated_at(user, id, at)
     end
     
     def user_read_item(user, id, at)
+      
+    end
+    
+    def read_states(user, ids)
       
     end
   end
