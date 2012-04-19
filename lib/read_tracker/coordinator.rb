@@ -2,17 +2,17 @@ module ReadTracker
   class Coordinator
     def item_created(user, id, at)
       item_store.create_item(id, at)
-      read_state_store.record_item_read(user, id, at)
+      read_state_store.record_read(user, id, at)
     end
     
     def item_updated(user, id, at)
       item_store.set_updated_at(id, at)
-      read_state_store.record_item_read(user, id, at)
+      read_state_store.record_read(user, id, at)
       read_state_store.set_updated_at(id, at)
     end
     
     def item_read(user, id, at)
-      read_state_store.record_item_read(user, id, at)
+      read_state_store.record_read(user, id, at)
     end
     
     def get_states(user, ids)

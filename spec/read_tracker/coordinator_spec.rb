@@ -14,7 +14,7 @@ describe Coordinator do
     before(:each) do
       @created_at = random_time
       @item_store.stub(:create_item)
-      @read_state_store.stub(:record_item_read)
+      @read_state_store.stub(:record_read)
     end
     
     subject { @coordinator.item_created(@user, @item_id, @created_at) }
@@ -24,7 +24,7 @@ describe Coordinator do
       subject
     end
     it "records that creator has read the item" do
-      @read_state_store.should_receive(:record_item_read).with(@user, @item_id, @created_at)
+      @read_state_store.should_receive(:record_read).with(@user, @item_id, @created_at)
       subject
     end
   end
@@ -33,7 +33,7 @@ describe Coordinator do
     before(:each) do
       @updated_at = random_time
       @item_store.stub(:set_updated_at)
-      @read_state_store.stub(:record_item_read)
+      @read_state_store.stub(:record_read)
       @read_state_store.stub(:set_updated_at)
     end
     
@@ -44,7 +44,7 @@ describe Coordinator do
       subject
     end
     it "records that updater has read the item" do
-      @read_state_store.should_receive(:record_item_read).with(@user, @item_id, @updated_at)
+      @read_state_store.should_receive(:record_read).with(@user, @item_id, @updated_at)
       subject
     end
     it "update all read state items to reflect new updated_at" do
@@ -61,7 +61,7 @@ describe Coordinator do
     subject { @coordinator.item_read(@user, @item_id, @read_at) }
     
     it "marks the item as read in the read state store" do
-      @read_state_store.should_receive(:record_item_read).with(@user, @item_id, @read_at)
+      @read_state_store.should_receive(:record_read).with(@user, @item_id, @read_at)
       subject
     end
   end
