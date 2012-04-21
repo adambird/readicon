@@ -1,10 +1,10 @@
 # Data mapper for persisting items being tracked
 
-module ReadTracker
+module Readicon
   class ItemStore
     include MongoStore
     
-    set_collection_name :read_tracker_items
+    set_collection_name :readicon_items
     set_indexes [
       [['id']], :unique => true
     ]

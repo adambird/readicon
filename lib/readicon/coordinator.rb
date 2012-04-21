@@ -1,4 +1,4 @@
-module ReadTracker
+module Readicon
   class Coordinator
     def item_created(user, id, at)
       item_store.create_item(id, at)

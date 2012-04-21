@@ -3,7 +3,7 @@
 require 'mongo'
 require 'uri'
 
-module ReadTracker
+module Readicon
   module MongoStore
     include Mongo
     
@@ -18,8 +18,8 @@ module ReadTracker
     end
 
     def open_store
-      uri  = URI.parse(ReadTracker.connection_profile)
-      Connection.from_uri(ReadTracker.connection_profile).db(uri.path.gsub(/^\//, ''))
+      uri  = URI.parse(Readicon.connection_profile)
+      Connection.from_uri(Readicon.connection_profile).db(uri.path.gsub(/^\//, ''))
     end
     
     def collection 

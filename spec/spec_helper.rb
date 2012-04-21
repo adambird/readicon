@@ -1,8 +1,8 @@
 require 'rake'
 require 'rspec'
-require "#{Rake.application.original_dir}/lib/read_tracker"
+require "#{Rake.application.original_dir}/lib/readicon"
 
-include ReadTracker
+include Readicon
 
 RSpec.configure do |config|
   # Use color in STDOUT

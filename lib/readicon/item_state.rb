@@ -1,6 +1,6 @@
 # Representation of item state for a given user
 
-module ReadTracker
+module Readicon
   class ItemState
     
     attr_accessor :user, :id, :read_at, :updated_at

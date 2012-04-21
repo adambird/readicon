@@ -1,6 +1,6 @@
 # Representation of item states for a given user
 
-module ReadTracker
+module Readicon
   class ItemStates
     include Enumerable
     

@@ -1,11 +1,11 @@
-module ReadTracker
-  require "read_tracker/mongo_store"
-  require "read_tracker/item"
-  require "read_tracker/item_state"
-  require "read_tracker/item_states"
-  require "read_tracker/item_store"
-  require "read_tracker/read_state_store"
-  require "read_tracker/coordinator"
+module Readicon
+  require "readicon/mongo_store"
+  require "readicon/item"
+  require "readicon/item_state"
+  require "readicon/item_states"
+  require "readicon/item_store"
+  require "readicon/read_state_store"
+  require "readicon/coordinator"
   
   class << self
     def setup
@@ -13,7 +13,7 @@ module ReadTracker
     end
     
     def connection_profile
-      @_connection_profile ||= "mongodb://localhost/read_tracker_default"
+      @_connection_profile ||= "mongodb://localhost/readicon_default"
     end
 
     def connection_profile=(value)

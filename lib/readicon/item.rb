@@ -1,6 +1,6 @@
 # Portable representation of an item being tracked
 
-module ReadTracker
+module Readicon
   class Item
     
     attr_accessor :id, :updated_at

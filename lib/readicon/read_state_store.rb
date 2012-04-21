@@ -1,10 +1,10 @@
 # Data mapper for persisting user read state for a given item
 
-module ReadTracker
+module Readicon
   class ReadStateStore
     include MongoStore
     
-    set_collection_name :read_tracker_read_states
+    set_collection_name :readicon_read_states
     set_indexes [
         [['user', 'id'], :unique => true]
       ]
