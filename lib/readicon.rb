@@ -74,7 +74,7 @@ module Readicon
     #
     # Returns an ItemState or nil
     def get_state(user, id)
-      _coordinator.get_state(user, ids)
+      _coordinator.get_state(user, id)
     end
 
   private
