@@ -14,12 +14,7 @@ module Readicon
     end
 
     def open_connection
-      @db ||= open_store
-    end
-
-    def open_store
-      uri  = URI.parse(Readicon.connection_profile)
-      Connection.from_uri(Readicon.connection_profile).db(uri.path.gsub(/^\//, ''))
+      Readicon.connection.db(Readicon.database)
     end
     
     def collection 

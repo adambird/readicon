@@ -19,10 +19,13 @@ module Readicon
     #
     def setup
       yield self
+      @connection = Mongo::MongoClient.from_uri(Readicon.connection_profile)
+      @database = URI.parse(Readicon.connection_profile).path.gsub(/^\//, '')
     end
 
     # Public : connection profile for the Mongo store to be used
     attr_accessor :connection_profile
+    attr_reader :connection, :database
 
     # Public : record that an item was created
     #
